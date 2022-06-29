@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <!-- 使用v-show做条件渲染 -->
+    <!-- <h2 v-show="true">欢迎来到{{name}}</h2> -->
+    <!-- <h2 v-show="1 === 2">欢迎来到{{name}}</h2> -->
+
+    <!-- 使用v-if做条件渲染 -->
+    <!-- <h2 v-if="false">欢迎来到{{name}}</h2> -->
+    <!-- <h2 v-if="1 === 1">欢迎来到{{name}}</h2> -->
+
+    <h2>当前n值为:{{n}}</h2>
+    <button @click="n++">点我进行n+1</button>
+    <div v-show="n === 1">Angular</div>
+    <div v-show="n === 2">React</div>
+    <div v-show="n === 3">Vue</div>
+
+    <div v-if="n === 1">哈哈哈</div>
+    <div v-else-if="n === 2">嘻嘻嘻</div>
+    <div v-else>老六</div>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        name: '尚硅谷',
+        n: 0
+      }
+    })
+  </script>
+</body>
+</html>

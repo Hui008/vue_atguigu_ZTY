@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <!-- 遍历数组 -->
+    <h2>{{title}}</h2>
+    <ul>
+      <li v-for="item in personArr" :key="item.id">{{item.name}}-{{item.age}}</li>
+    </ul>
+
+    <!-- 遍历对象 -->
+    <h2>遍历对象</h2>
+    <ul>
+      <li v-for="(value, key) in car" :key="key">{{key}}--{{value}}</li>
+    </ul>
+
+    <!-- 遍历字符串 -->
+    <h2>遍历字符串</h2>
+    <ul>
+      <li v-for="(char, index) in str" :key="index">{{char}}--{{index}}</li>
+    </ul>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提p示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        title: '人员列表',
+        personArr: [
+          {id: '001', name: '张三', age: '18'},
+          {id: '002', name: '李四', age: '19'},
+          {id: '003', name: '王五', age: '20'}
+        ],
+        car: {
+          name: '擎天柱',
+          price: '800w',
+          color: 'red'
+        },
+        str: 'HelloWorld'
+      }
+    })
+  </script>
+</body>
+</html>

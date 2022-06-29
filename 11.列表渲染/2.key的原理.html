@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h2>{{title}}</h2>
+    <button @click.once="addPerson">添加一个老刘</button>
+    <ul>
+      <li v-for="item in personArr" :key="item.id">
+        {{item.name}}-{{item.age}}
+        <input type="text">
+      </li>
+    </ul>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        title: '人员列表',
+        personArr: [
+          {id: '001', name: '张三', age: '18'},
+          {id: '002', name: '李四', age: '19'},
+          {id: '003', name: '王五', age: '20'}
+        ],
+      },
+      methods: {
+        addPerson() {
+          const LaoLiu = {id: '004', name: '老刘', age: '28'}
+          this.personArr.unshift(LaoLiu)
+        }
+      },
+    })
+  </script>
+</body>
+</html>

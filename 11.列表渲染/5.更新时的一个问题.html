@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang='en'>
+
+<head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+
+<body>
+  <div id='root'>
+    <h2>人员列表</h2>
+    <button @click="personUpdate">点我更新信息</button>
+    <ul>
+      <li v-for="item in personArr" :key="item.id">{{item.name}}-{{item.age}}</li>
+    </ul>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el: '#root',
+      data: {
+        personArr: [{
+            id: '001',
+            name: '马冬梅',
+            age: 18
+          },
+          {
+            id: '002',
+            name: '周冬雨',
+            age: 20
+          },
+          {
+            id: '003',
+            name: '周杰伦',
+            age: 25
+          },
+          {
+            id: '004',
+            name: '温兆伦',
+            age: 24
+          }
+        ]
+      },
+      methods: {
+        personUpdate() {
+          // this.personArr[0].id = '001' // 可以更改
+          // this.personArr[0].name = '马老师' // 可以更改
+          // this.personArr[0].age = 50 // 可以更改
+          this.personArr[0] = {
+            id: '001',
+            name: '马老师',
+            age: 50
+          } // 不能更改
+        }
+      },
+    })
+  </script>
+</body>
+
+</html>
