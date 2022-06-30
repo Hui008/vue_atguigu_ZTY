@@ -48,11 +48,8 @@
           // this.personArr[0].id = '001' // 可以更改
           // this.personArr[0].name = '马老师' // 可以更改
           // this.personArr[0].age = 50 // 可以更改
-          this.personArr[0] = {
-            id: '001',
-            name: '马老师',
-            age: 50
-          } // 不能更改
+          // this.personArr[0] = {id: '001', name: '马老师', age: 50} // 不能更改
+          this.personArr.splice(0, 1, {id: '001', name: '马老师', age: 50}) // 可以更改
         }
       },
     })

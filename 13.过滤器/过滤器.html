@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+  <script src="../js/dayjs.min.js"></script>
+</head>
+<body>
+  <div id='root'>
+    <h2>显示格式化时间之后的时间</h2>
+    <!-- 计算属性实现 -->
+    <h3>现在是{{fmtTime}}</h3>
+    <!-- methods实现 -->
+    <h3>现在是{{getFmtTime()}}</h3>
+    <!-- 过滤器实现 -->
+    <h3>现在是{{time | timeFormater}}</h3>
+    <h3>现在是{{time | timeFormater | mySlice}}</h3>
+    <h3 :x="msg | mySlice">尚硅谷</h3>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+    // 全局过滤器
+    Vue.filter('mySlice', function(value) {
+      return value.slice(0, 4)
+    })
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        time: 1656573602276,
+        msg: '你好，尚硅谷'
+      } ,
+      computed: {
+        fmtTime() {
+          return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+        }
+      },
+      methods: {
+        getFmtTime() {
+          return dayjs(this.time).format('YYYY-MM-DD HH:mm:ss')
+        }
+      },
+      // 局部过滤器
+      filters: {
+        timeFormater(value) {
+          return dayjs(value).format('YYYY-MM-DD HH:mm:ss')
+        }
+      }
+    })
+  </script>
+</body>
+</html>

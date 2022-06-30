@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h2 v-pre>Vue</h2>
+    <h2 v-pre>当前的n值为{{n}}</h2>
+    <button v-pre @click="n++">n+1</button>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        n: 1
+      }
+    })
+  </script>
+</body>
+</html>

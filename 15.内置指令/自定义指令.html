@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h2>当前的n值为：<span v-text="n"></span></h2>
+    <h2>放大后的n值为：<span v-big="n"></span></h2>
+    <button @click="n++">点我n+1</button>
+    <input type="text" v-fbind:value="n">
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+    // 全局指令
+    Vue.directive('fbind', {
+      // 指令和元素成功绑定时
+      bind(element, binding){
+            element.value = binding.value
+          },
+          // 指令所在元素被插入页面时调用
+          inserted(element, binding){
+            element.focus()
+          },
+          // 指令所在的模板被重新解析时
+          update(element, binding) {
+            element.value = binding.value
+            element.focus()
+          }
+    })
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        n: 1
+      },
+      // 局部指令
+      directives: {
+        // 调用时机：1. 指令和元素成功绑定
+        //          2. 指令所处的模板被重新解析时 
+
+        big(element, binding) {
+          console.log(this); // 此处的this是Window
+          element.innerText = binding.value * 10
+        },
+        /* fbind: {
+          // 指令和元素成功绑定时
+          bind(element, binding){
+            element.value = binding.value
+          },
+          // 指令所在元素被插入页面时调用
+          inserted(element, binding){
+            element.focus()
+          },
+          // 指令所在的模板被重新解析时
+          update(element, binding) {
+            element.value = binding.value
+            element.focus()
+          }
+        } */
+      }
+    })
+  </script>
+</body>
+</html>

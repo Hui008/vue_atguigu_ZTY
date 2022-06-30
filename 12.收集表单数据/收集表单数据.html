@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <form @submit="demo">
+      <label for="zf" >账号:</label>
+      <input type="text" id="zf" v-model.trim="userInfo.account"><br><br>
+      <label for="pwd">密码:</label>
+      <input type="text" id="pwd" v-model="userInfo.password"><br><br>
+      年龄：<input type="number" v-model.number="userInfo.age"><br><br>
+      性别：
+      男<input type="radio" name="sex" v-model="userInfo.sex" value="male">
+      女<input type="radio" name="sex" v-model="userInfo.sex" value="female"><br><br>
+      爱好:
+      学习<input type="checkbox" v-model="userInfo.hobby" value="study">
+      睡觉<input type="checkbox" v-model="userInfo.hobby"  value="sleep">
+      打游戏<input type="checkbox" v-model="userInfo.hobby" value="playGame"><br><br>
+      所属校区
+      <select v-model="userInfo.city">
+        <option value="">请选择校区</option>
+        <option value="M78">M78星云</option>
+        <option value="M64">M64星云</option>
+        <option value="M232">M232星云</option>
+      </select> <br><br>
+      其他信息：
+      <textarea v-model.lazy="userInfo.more"></textarea> <br><br>
+      <input type="checkbox" v-model="userInfo.agree">
+      阅读并接受<a href="http://www.baidu.com">《用户协议》</a><br><br>
+      <button>提交</button>
+    </form>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        userInfo: {
+          account: '',
+          password: '', 
+          sex: '',
+          age: '',
+          hobby: [],
+          city: '',
+          more:'',
+          agree:''
+        }
+      },
+      methods: {
+        demo(e) {
+          console.log(JSON.stringify(this.userInfo));
+          e.preventDefault();
+        }
+      }
+    })
+  </script>
+</body>
+</html>

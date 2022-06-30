@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h2>学校名称：{{name}}</h2>
+    <h2>学校地址:{{address}}</h2>
+
+    <hr>
+    <button @click="addSex">点我给学生追加性别信息</button>
+    <h2>学生姓名：{{student.name}}</h2>
+    <h2 v-if="student.sex">学生性别：{{student.sex}}</h2>
+    <h2>学生真实年龄：{{student.age.rAge}}, 学生对外年龄：{{student.age.sAge}}</h2>
+    <h2>爱好</h2>
+    <ul>
+      <li v-for="(h, index) in student.hobby" :key="index">
+        {{h}}
+      </li>
+    </ul>
+    <h2>朋友</h2>
+    <ul>
+      <li v-for="(item,index) in student.friends" :key="index">
+        {{item.name}}---{{item.age}}
+      </li>
+    </ul>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        name: '尚硅谷',
+        address: '北京',
+        student: {
+          name: '赛罗',
+          age: {
+            rAge: 40,
+            sAge: 29
+          },
+          hobby: ['抽烟', '睡觉', '冥想'],
+          friends: [
+            {name: '迪迦', age: 36},
+            {name: '银河', age: '38'}
+          ]
+        }
+      },
+      methods: {
+        addSex() {
+          // Vue.set(vm.student, 'sex', '男')
+          this.$set(vm.student, 'sex', '男')
+        }
+      },
+    })
+  </script>
+</body>
+</html>

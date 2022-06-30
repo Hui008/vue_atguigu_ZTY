@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h2 v-cloak>{{name}}</h2>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        name: '尚硅谷'
+      }
+    })
+  </script>
+</body>
+</html>
