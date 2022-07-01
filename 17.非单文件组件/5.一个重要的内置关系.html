@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const school = Vue.extend({
+      name: 'Hello',
+      template:`
+        <div>
+          <h2>学校名称：{{name}}</h2>  
+          <h2>学校地址：{{address}}</h2>  
+        </div>
+      `,
+      data() {
+        return {
+          name: '尚硅谷',
+          address: '北京'
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        msg: '你好啊!'
+      }
+    })
+
+    console.log(school.prototype.__proto__ === Vue.prototype);
+
+/*     // 定义一个构造函数
+    function Demo() {
+      this.a = 1
+      this.b = 2
+    }
+
+    // 创造一个Demo的实例对象
+    const d = new Demo()
+
+    console.log(Demo.prototype); // 显示原型属性
+    console.log(d.__proto__); // 隐式原型属性
+
+    // 通过显示原型属性操作原型对象
+    Demo.prototype.x = 99
+
+    console.log(d.__proto__.x);
+    console.log(d.x);
+
+    console.log(Demo.prototype === d.__proto__); */
+  </script>
+</body>
+</html>

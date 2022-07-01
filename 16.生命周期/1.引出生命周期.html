@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h2 :style="{opacity}">尚硅谷</h2>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        opacity: 1
+      },
+      methods: {
+
+      },
+      // Vue完成模板解析并把真实DOM元素放入页面后(挂载完毕)调用mounted
+      mounted() {
+        setInterval(() => {
+          if(vm.opacity >= 0) {
+            vm.opacity -= 0.01
+          }
+          else {
+            vm.opacity = 1
+          }
+        }, 16)
+      },
+    })
+
+    // 通过外部定时器实现，不推荐
+/*     setInterval(() => {
+      if(vm.opacity >= 0) {
+        vm.opacity -= 0.01
+      }
+      else {
+        vm.opacity = 1
+      }
+    }, 16) */
+  </script>
+</body>
+</html>

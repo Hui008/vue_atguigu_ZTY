@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h2 v-text="n"></h2>
+    <h2>当前的n值为：{{n}}</h2>
+    <button @click="add">点击进行n+1</button>
+    <button @click="bye">点我销毁vm</button>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        opacity: 1,
+        n: 1
+      },
+      methods: {
+        add() {
+          console.log('add');
+          this.n = this.n + 1
+        },
+        bye() {
+          this.$destroy()
+        }
+      },
+      beforeCreate() {
+        console.log('beforeCreate')
+        console.log(this);
+        // debugger
+      },  
+      created() {
+        console.log('created')
+        // console.log(this)
+        // debugger
+      },
+      beforeMount() {
+        console.log('beforeMount')
+        // console.log(this); // 此时methods方法还未在Vue上挂载
+        // debugger
+      },
+      mounted() {
+        console.log('mounted')
+        // console.log(this)
+        // debugger
+      },
+      beforeUpdate() {
+        console.log('beforeUpdate')
+        // console.log(this.n) // 此时页面的n的数据还未改变
+        // debugger
+      },
+      updated() {
+        console.log('updated')
+        // console.log(this.n)
+        // debugger
+      },
+    })
+  </script>
+</body>
+</html>

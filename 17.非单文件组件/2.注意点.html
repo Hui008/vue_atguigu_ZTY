@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h1>{{msg}}</h1>
+    <school></school>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+    const school = Vue.extend({
+      name: 'Hello',
+      template:`
+        <div>
+          <h2>学校名称：{{name}}</h2>  
+          <h2>学校地址：{{address}}</h2>  
+        </div>
+      `,
+      data() {
+        return {
+          name: '尚硅谷',
+          address: '北京'
+        }
+      }
+    })
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        msg: '学习Vue中'
+      },
+      components: {school}
+    })
+  </script>
+</body>
+</html>

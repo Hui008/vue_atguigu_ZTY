@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <!-- 使用全局组件 -->
+    <hello></hello>
+    <!-- 使用局部组件 -->
+    <school></school>
+    <student></student>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    // 创建school组件
+    const school = Vue.extend({
+      template: `
+        <div>
+          <h2>学校名称：{{schoolName}}</h2>
+          <h2>学校地址；{{schooleAddress}}</h2> 
+          <button @click="showName">点我提示学校名</button>
+          <hr>
+        </div>
+      `,
+      data() {
+        return {
+          schoolName: '尚硅谷',
+          schooleAddress: '北京'
+        }
+      },
+      methods: {
+        showName() {
+          alert(this.schoolName)
+        }
+      },
+    })
+    // 创建student组件
+    const student = Vue.extend({
+      template: `
+      <div>
+        <h2>学生名称：{{studentName}}</h2>
+        <h2>学生年龄；{{studentAge}}</h2> <hr>
+      </div>
+      `,
+      data() {
+        return {
+          studentName: '张三',
+          studentAge: '24'
+        }
+      }
+    })
+
+    // 创建全局组件
+    const hello = Vue.extend({
+      template: `
+        <div>
+          <h2>你好！</h2>
+        </div>
+      `
+    })
+    // 注册全局组件
+    Vue.component('hello', hello)
+
+    const vm = new Vue({
+      el:'#root',
+      components: {school, student}
+    })
+  </script>
+</body>
+</html>

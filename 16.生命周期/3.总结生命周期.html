@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang='en'>
+ <head>
+  <title>Document</title>
+  <script src='../js/vue.js'></script>
+</head>
+<body>
+  <div id='root'>
+    <h2 :style="{opacity}">尚硅谷</h2>
+    <button @click="tool1">透明度设置为1</button>
+    <button @click="stop">停止变化</button>
+  </div>
+
+  <script type='text/javascript'>
+    Vue.config.productionTip = false // 取消Vue的生产提示
+
+    const vm = new Vue({
+      el:'#root',
+      data: {
+        opacity: 1
+      },
+      methods: {
+        stop() {
+          // clearInterval(this.timer)
+          this.$destroy()
+        },
+        tool1() {
+          this.opacity = 1
+        }
+      },
+      // Vue完成模板解析并把真实DOM元素放入页面后(挂载完毕)调用mounted
+      mounted() {
+        this.timer = setInterval(() => {
+          // console.log(111);
+          if(vm.opacity >= 0) {
+            vm.opacity -= 0.01
+          }
+          else {
+            vm.opacity = 1
+          }
+        }, 16)
+      },
+      beforeDestroy() {
+        clearInterval(this.timer)
+      },
+    })
+  </script>
+</body>
+</html>
